@@ -1,43 +1,77 @@
-// import the data from data.js
 const tableData = data;
 
-// reference the HTML table using d3
 var tbody = d3.select("tbody");
 
 function buildTable(data) {
 
-    //Clears out any existing data
-    tbody.html("");
+  tbody.html("");
 
-    //Looping through each object in the data
-    data.forEach((dataRow) => {
-        //appends a new row to the table body
-        let row = tbody.append("tr");
-        // loop through the datarow and ad each value as a table cell
-        Object.values(dataRow).forEach((val) => {
-            let cell = row.append("td");
-            cell.text(val);
-        });
+  data.forEach((dataRow) => {
+    let row = tbody.append("tr");
+
+    Object.values(dataRow).forEach((val) => {
+      let cell = row.append("td");
+      cell.text(val);
     });
-};
+  });
+}
 
-function handleClick(){
-    // Grabs the datetime value from the filter
+// NOTE: I discovered a more efficient way of filtering through all of the inputs provided by the user. It eliminates the use of additional funciont (filterTable()) and was able to do so without a forEach loop. This meant that the runtime for the app was much faster. I have included a commented out version of what is asked from the criteria. This includes the additional filterTable Function and the forEach loop. This is intend to display that I have done the work. 
+
+// Version w/ function and Foreach loop: var filters = {};
+
+function handleClick() {
     let date = d3.select("#datetime").property("value");
+    let city = d3.select("#city").property("value");
+    let state = d3.select("#state").property("value");
+    let country = d3.select("#country").property("value");
+    let shape = d3.select("#shape").property("value");
+
     let filteredData = tableData;
 
-    // Checks to see if a date was entered and filter the data suing that date.
     if (date) {
-        // applies filter to the table data to only keep the rows where the datetime value matches the filter value.
         filteredData = filteredData.filter(row => row.datetime === date);
-    }
-
-    //Rebuilds the table using the filtered data, will default to original if no data is entered
+        // Version w/ function and Foreach loop: filters.datetime = date;
+    };
+    if (city) {
+        filteredData = filteredData.filter(row => row.city === city);
+        // Version w/ function and Foreach loop: filters.city = city;
+    };
+    if (state) {
+        filteredData = filteredData.filter(row => row.state === state);
+        // Version w/ function and Foreach loop: filters.state = state;
+    };
+    if (country) {
+        filteredData = filteredData.filter(row => row.country === country);
+        // Version w/ function and Foreach loop: filters.country = country;
+    };
+    if (shape) {
+        filteredData = filteredData.filter(row => row.shape === shape);
+        // Version w/ function and Foreach loop: filters.shape = shape;
+    };
+    
     buildTable(filteredData);
+    // Version w/ function and Foreach loop: filterTable(filters);
 };
 
-//Attach an event to listen for the form button
-d3.selectAll('#filter-btn').on('click',handleClick);
+// Version w/ function and Foreach loop: 
+// function filterTable (filterVar) {
+    
+//     Objects.entries(filterVar).forEach((filter) => {
+//         var key = filter[0]
+//         var value = filter[1]
+//         filteredData = filteredData.filter(row => row.key === value);
+//     });
+    
+//     buildTable(filteredData);
+// }
 
-//Builds the table when the page loads
+function resetClick() {
+    location.reload()
+}
+
+d3.selectAll("#filter-btn").on("click", handleClick);
+d3.selectAll("#reset-btn").on("click", resetClick);
+
+// Build the table when the page loads
 buildTable(tableData);

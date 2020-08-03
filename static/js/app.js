@@ -30,34 +30,46 @@ function handleClick() {
     let filteredData = tableData;
 
     if (date) {
+        // The below code would not be here with the version with foreach loop
         filteredData = filteredData.filter(row => row.datetime === date);
-        // Version w/ function and Foreach loop: filters.datetime = date;
+        // Version w/ function and Foreach loop: 
+        // filters.datetime = date;
     };
     if (city) {
+        // The below code would not be here with the version with foreach loop
         filteredData = filteredData.filter(row => row.city === city);
-        // Version w/ function and Foreach loop: filters.city = city;
+        // Version w/ function and Foreach loop: 
+        // filters.city = city;
     };
     if (state) {
+        // The below code would not be here with the version with foreach loop
         filteredData = filteredData.filter(row => row.state === state);
-        // Version w/ function and Foreach loop: filters.state = state;
+        // Version w/ function and Foreach loop: 
+        // filters.state = state;
     };
     if (country) {
+        // The below code would not be here with the version with foreach loop
         filteredData = filteredData.filter(row => row.country === country);
-        // Version w/ function and Foreach loop: filters.country = country;
+        // Version w/ function and Foreach loop: 
+        // filters.country = country;
     };
     if (shape) {
+        // The below code would not be here with the version with foreach loop
         filteredData = filteredData.filter(row => row.shape === shape);
-        // Version w/ function and Foreach loop: filters.shape = shape;
+        // Version w/ function and Foreach loop: 
+        // filters.shape = shape;
     };
     
+    // The below code would not be here with the version with foreach loop
     buildTable(filteredData);
-    // Version w/ function and Foreach loop: filterTable(filters);
+    // Version w/ function and Foreach loop: 
+    // filterTable(filters);
 };
 
 // Version w/ function and Foreach loop: 
 // function filterTable (filterVar) {
     
-//     Objects.entries(filterVar).forEach((filter) => {
+//     Object.entries(filterVar).forEach((filter) => {
 //         var key = filter[0]
 //         var value = filter[1]
 //         filteredData = filteredData.filter(row => row.key === value);

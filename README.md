@@ -1,7 +1,7 @@
 # UFOs
 ### Background
 
-In this challenge, I created additional filters for the webpage. The advanced filtering capability will allow users to filter the data by multiple factors. The webpage and dynamic table Dana has built are working as intended, but Dana has decided she would like the table to be filtered even further. While it currently filters by the date, she would like to include the ability to filter by more column headers. The ability to pinpoint a search by date and country, for example, would go a long way in providing more in-depth analysis of UFO sightings.
+This project includes retrieves an API that includes all of the latest sightings of UFOs (Dataset of over 150+ UFOs sightings). The data then is ported into Bootstrap and uses Javascript dynamic functions / filters to transform the data. Filters include: Date, City, State, Country, Shape. 
 
 ### Objectives
 
